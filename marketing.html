@@ -10,11 +10,18 @@
         :root { --neon-black: #0A0B0D; --neon-teal: #009485; --neon-red: #F23030; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--neon-black); color: white; }
         
-       
+        /* ASSET 5: 100% Fill */
+        .bg-pattern { 
+            background-image: url('Asset 5.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            opacity: 1; 
+        }
         
         .neon-box-glow { box-shadow: 0 0 15px rgba(0, 148, 133, 0.4); }
 
-        /* MODAL STYLES */
+        /* MODAL STYLES - Mobile Optimized */
         .modal { 
             display: none; 
             position: fixed; 
@@ -22,22 +29,24 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(0,0,0,0.9); 
-            z-index: 9999; 
-            padding: 2rem;
+            background: rgba(0,0,0,0.95); /* Darker for better contrast */
+            z-index: 10000; /* Highest priority to sit above everything */
+            padding: 1rem;
             align-items: center; 
             justify-content: center;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-content-wrapper {
             background: white;
             color: #1a1a1a;
             width: 100%;
             max-width: 900px;
-            max-height: 90vh; 
+            max-height: 85vh; /* Slightly smaller to fit mobile screens better */
             border-radius: 8px;
             position: relative;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         .modal-header {
             padding: 1.5rem;
@@ -50,10 +59,10 @@
             flex-shrink: 0;
         }
         .modal-body {
-            padding: 2rem;
+            padding: 1.5rem;
             overflow-y: auto; 
         }
-        .close-modal { font-size: 2rem; cursor: pointer; color: #F23030; line-height: 1; }
+        .close-modal { font-size: 2rem; cursor: pointer; color: #F23030; line-height: 1; padding: 0.5rem; }
         .close-modal:hover { color: #d12020; }
         
         /* Chatbot Styling */
@@ -74,58 +83,75 @@
 <body class="relative min-h-screen flex flex-col">
     <div class="absolute inset-0 bg-pattern z-0 pointer-events-none"></div>
 
-    <nav class="relative z-20 px-6 py-6 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-800 bg-[#0A0B0D]/80 backdrop-blur-sm">
-        <div class="text-2xl font-bold tracking-tighter text-white">
-            <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
+    <nav class="relative z-20 px-6 py-6 border-b border-gray-800 bg-[#0A0B0D]/80 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
+            <div class="text-2xl font-bold tracking-tighter text-white">
+                <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 border border-gray-700 rounded">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
+                <a href="events.html" class="hover:text-[#009485] transition-colors">EVENTS</a>
+                <a href="marketing.html" class="text-[#009485]">MARKETING CONTENT</a>
+                <a href="events.html" class="px-6 py-2 bg-[#009485] rounded-full hover:bg-opacity-90 transition-all neon-box-glow">TICKETS</a>
+            </div>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
-            <a href="events.html" class="hover:text-[#009485] transition-colors">EVENTS</a>
-            <a href="marketing.html" class="text-[#009485]">MARKETING CONTENT</a>
-            <a href="events.html" class="px-6 py-2 bg-[#009485] rounded-full hover:bg-opacity-90 transition-all neon-box-glow">TICKETS</a>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#0A0B0D] border border-gray-800 rounded-lg p-4 absolute left-4 right-4 z-50 shadow-xl">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="events.html" class="text-white hover:text-[#009485] transition-colors py-3 border-b border-gray-800 font-semibold">EVENTS</a>
+                <a href="marketing.html" class="text-[#009485] font-bold hover:text-white transition-colors py-3 border-b border-gray-800">MARKETING CONTENT</a>
+                <a href="events.html" class="inline-block px-6 py-3 bg-[#009485] text-white rounded-full hover:bg-opacity-90 transition-all mt-2 font-bold">TICKETS</a>
+            </div>
         </div>
     </nav>
 
     <main class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
-        <h1 class="text-4xl font-bold mb-2 font-playfair">Strategic Assets</h1>
-        <p class="text-gray-400 mb-12">Internal documentation, brand systems, and content marketing assets.</p>
+        <h1 class="text-4xl font-bold mb-2 font-playfair text-center md:text-left">Strategic Assets</h1>
+        <p class="text-gray-400 mb-12 text-center md:text-left">Internal documentation, brand systems, and content marketing assets.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div onclick="openModal('modal-blog')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2">
+            <div onclick="openModal('modal-blog')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-[#009485] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Local Spots Guide</h3>
                 <p class="text-sm text-gray-400">Targeting visiting artists & tourists. Full directory of local partners.</p>
                 <span class="text-[#009485] text-xs font-bold mt-4 inline-block group-hover:underline">READ FULL POST &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-case')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2">
+            <div onclick="openModal('modal-case')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-[#F23030] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Ghostwalk Success</h3>
                 <p class="text-sm text-gray-400">Strategic analysis of the $20k revenue potential and event logistics.</p>
                 <span class="text-[#F23030] text-xs font-bold mt-4 inline-block group-hover:underline">VIEW FULL STUDY &rarr;</span>
             </div>
 
-             <div onclick="openModal('modal-discovery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#EC6E31] rounded-xl p-6 transition-all hover:-translate-y-2">
+             <div onclick="openModal('modal-discovery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#EC6E31] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-[#EC6E31] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Discovery Workshop</h3>
                 <p class="text-sm text-gray-400">Complete workshop outline for aligning stakeholders on the brand.</p>
                 <span class="text-[#EC6E31] text-xs font-bold mt-4 inline-block group-hover:underline">VIEW OUTLINE &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-system')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-white rounded-xl p-6 transition-all hover:-translate-y-2">
+            <div onclick="openModal('modal-system')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-white rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-white mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Visual Brand System</h3>
                 <p class="text-sm text-gray-400">The "Neon Noir" vs. "Restoration Brick" design system breakdown.</p>
                 <span class="text-white text-xs font-bold mt-4 inline-block group-hover:underline">VIEW SYSTEM &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-guide')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2">
+            <div onclick="openModal('modal-guide')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-[#009485] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Identity Guide</h3>
                 <p class="text-sm text-gray-400">The official 7-section guide on history, archetype, and voice.</p>
                 <span class="text-[#009485] text-xs font-bold mt-4 inline-block group-hover:underline">READ FULL GUIDE &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-gallery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2">
+            <div onclick="openModal('modal-gallery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
                 <div class="h-2 w-12 bg-[#F23030] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Asset Library</h3>
                 <p class="text-sm text-gray-400">Access logos, favicons, infographics, and 3D renderings.</p>
@@ -453,14 +479,30 @@
 
     <script>
         function openModal(id) { 
-            document.getElementById(id).style.display = 'flex'; 
-            document.body.style.overflow = 'hidden'; 
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.style.display = 'flex'; 
+                document.body.style.overflow = 'hidden'; 
+            }
         }
         function closeModal(id) { 
-            document.getElementById(id).style.display = 'none'; 
-            document.body.style.overflow = 'auto'; 
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.style.display = 'none'; 
+                document.body.style.overflow = 'auto'; 
+            }
         }
         function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
+        
+        // Mobile Menu Toggle Script
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
         function askBot(topic) {
             const content = document.getElementById('chatContent');
             let answer = "";
@@ -470,9 +512,9 @@
             userBubble.innerText = topic === 'strategy' ? "Unlock Strategy" : topic.charAt(0).toUpperCase() + topic.slice(1);
             content.appendChild(userBubble);
             switch(topic) {
-                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale."; break;
-                case 'tickets': answer = "Prices vary! Youth shows start at $5. Major touring acts are $25-$40."; break;
-                case 'strategy': isStrategy = true; answer = "<strong>STRATEGY UNLOCKED:</strong><br>I have opened the <a href='marketing.html' class='underline font-bold text-[#A63E26]'>Strategic Assets</a> Hub for you."; setTimeout(() => { window.location.href = 'marketing.html'; }, 2000); break;
+                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale. It's safe and close."; break;
+                case 'tickets': answer = "We use Tiered Pricing: Youth shows start at $5. Major touring acts are $25-$40."; break;
+                case 'strategy': isStrategy = true; answer = "<strong>STRATEGY UNLOCKED:</strong><br>You are currently viewing the <span class='font-bold text-[#A63E26]'>Strategy Hub</span>. Explore the cards above."; break;
             }
             setTimeout(() => {
                 const botBubble = document.createElement('div');
