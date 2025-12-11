@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Beale Street Theater</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-black: #0A0B0D; --neon-teal: #009485; --neon-red: #F23030; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #F3F4F6; }
+        .header-bg { background-color: var(--neon-black); border-bottom: 4px solid #F23030; }
+        .event-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .btn-pill { background-color: var(--neon-teal); color: white; border-radius: 9999px; padding: 0.5rem 1.5rem; font-weight: 600; transition: background-color 0.2s; }
+        .btn-pill:hover { background-color: #007f72; }
+        .strategy-beacon { position: absolute; width: 20px; height: 20px; background-color: var(--neon-red); border-radius: 50%; cursor: pointer; z-index: 100; animation: pulse-red 2s infinite; }
+        .strategy-container:hover .strategy-popover, .strategy-container:focus-within .strategy-popover { display: block; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(242, 48, 48, 0); } 100% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0); } }
+        .strategy-popover { display: none; position: absolute; width: 300px; background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 15px; border-left: 5px solid var(--neon-red); border-radius: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 101; font-size: 0.8rem; line-height: 1.4; }
+        .chat-window { transition: all 0.3s ease-in-out; transform: translateY(120%); }
+        .chat-window.open { transform: translateY(0); }
+    </style>
+</head>
+<body class="relative">
+
+    <nav class="header-bg px-6 py-6 flex justify-between items-center text-white relative">
+        <div class="text-2xl font-bold tracking-tighter">
+            <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
+            <a href="events.html" class="text-[#009485]">EVENTS</a>
+            <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
+            <a href="events.html" class="btn-pill">TICKETS</a>
+        </div>
+    </nav>
+
+    <div style="position: relative;">
+        <div class="bg-white py-12 px-6 text-center border-b border-gray-200 relative">
+             <div class="strategy-container" style="position: absolute; top: 20px; right: 20%;">
+                <div class="strategy-beacon" tabindex="0"></div>
+                <div class="strategy-popover" style="top: 30px; right: -20px;">
+                    <h4>Strategic Intent: Structured Data</h4>
+                    <p><strong>Objective:</strong> Dominate local SEO.</p>
+                    <p><strong>Tactic:</strong> Explicit "Genre" & "Price" tagging.</p>
+                </div>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-900 mb-2" style="font-family: 'Playfair Display', serif;">Upcoming Events</h1>
+            <p class="text-gray-500 max-w-2xl mx-auto">Live music, community theater, and family entertainment in the heart of Kingman.</p>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col">
+                <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+                    <span class="text-gray-500 font-bold uppercase tracking-widest">Musical Poster</span>
+                    <div class="absolute top-4 right-4 bg-[#009485] text-white text-xs font-bold px-2 py-1 rounded">FAMILY</div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">The Phantom Tollbooth</h3>
+                    <p class="text-sm text-gray-700 mb-4">A journey through the Kingdom of Wisdom. Perfect for all ages.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <div><span class="block text-xs text-gray-600 uppercase font-bold">Genre</span><span class="font-semibold text-gray-800">Musical / Family</span></div>
+                        <div class="text-right"><span class="block text-xs text-gray-600 uppercase font-bold">Tickets</span><span class="font-bold text-[#009485]">$15 - $25</span></div>
+                    </div>
+                    <button class="btn-pill w-full mt-6 text-center">Get Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col">
+                <div class="h-48 bg-gray-900 flex items-center justify-center relative">
+                    <span class="text-gray-500 font-bold uppercase tracking-widest">Rock Poster</span>
+                    <div class="absolute top-4 right-4 bg-[#F23030] text-white text-xs font-bold px-2 py-1 rounded">LIVE MUSIC</div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">AC/DC vs. Ozzy</h3>
+                    <p class="text-sm text-gray-700 mb-4">A high-energy tribute battle. 21+ suggested.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <div><span class="block text-xs text-gray-600 uppercase font-bold">Genre</span><span class="font-semibold text-gray-800">Rock / Tribute</span></div>
+                        <div class="text-right"><span class="block text-xs text-gray-600 uppercase font-bold">Tickets</span><span class="font-bold text-[#009485]">$25 - $40</span></div>
+                    </div>
+                    <button class="btn-pill w-full mt-6 text-center">Get Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col border-t-4 border-[#A63E26]">
+                <div class="h-48 bg-[#F2E2CE] flex items-center justify-center relative">
+                    <span class="text-[#A63E26] font-bold uppercase tracking-widest">Youth Art</span>
+                    <div class="absolute top-4 right-4 bg-[#A63E26] text-white text-xs font-bold px-2 py-1 rounded">YOUTH</div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Stone in the Road</h3>
+                    <p class="text-sm text-gray-700 mb-4">Support the next generation of Kingman artists.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <div><span class="block text-xs text-gray-600 uppercase font-bold">Genre</span><span class="font-semibold text-gray-800">Youth Production</span></div>
+                        <div class="text-right"><span class="block text-xs text-gray-600 uppercase font-bold">Price</span><span class="font-bold text-[#009485]">Kids start at $5</span></div>
+                    </div>
+                    <button class="btn-pill w-full mt-6 text-center">Support</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 py-6 text-center text-gray-500 text-xs border-t">
+        &copy; 2025 Beale Street Theater.
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div class="strategy-container" style="position: absolute; bottom: 18px; right: 70px; z-index: 60;">
+            <div class="strategy-beacon" tabindex="0"></div>
+            <div class="strategy-popover" style="bottom: 30px; right: 0;">
+                <h4>Strategic Intent: Friction Reduction</h4>
+                <p><strong>Problem:</strong> User friction on FAQs.</p>
+                <p><strong>Solution:</strong> "Service over Sales."</p>
+            </div>
+        </div>
+
+        <div id="chatWindow" class="chat-window w-80 bg-white text-gray-800 rounded-xl shadow-2xl mb-4 overflow-hidden border-2 border-[#009485]">
+            <div class="bg-[#009485] p-4 text-white flex justify-between items-center">
+                <span class="font-bold">Box Office Buddy</span>
+                <button onclick="toggleChat()" class="text-white hover:text-gray-200">&times;</button>
+            </div>
+            <div id="chatContent" class="h-64 p-4 overflow-y-auto bg-gray-50 text-sm space-y-3">
+                <div class="bg-gray-200 p-2 rounded-lg rounded-tl-none inline-block max-w-[85%]">
+                    Hi! I'm your Box Office Buddy. Need help planning? Or... do you want to see the strategy?
+                </div>
+            </div>
+            <div class="p-2 bg-gray-100 grid grid-cols-2 gap-2">
+                <button onclick="askBot('parking')" class="text-xs bg-white border border-[#009485] text-[#009485] py-2 rounded hover:bg-[#009485] hover:text-white transition">🚗 Parking?</button>
+                <button onclick="askBot('tickets')" class="text-xs bg-white border border-[#009485] text-[#009485] py-2 rounded hover:bg-[#009485] hover:text-white transition">🎟️ Prices?</button>
+                <button onclick="askBot('strategy')" class="text-xs bg-[#F23030] text-white py-2 rounded hover:bg-[#c41e1e] transition font-bold">🧠 Strategy Mode</button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="bg-[#009485] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-[#007f72] transition-colors shadow-[0_0_15px_rgba(0,148,133,0.4)]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
+        function askBot(topic) {
+            const content = document.getElementById('chatContent');
+            let answer = "";
+            let isStrategy = false;
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-[#009485] text-white p-2 rounded-lg rounded-tr-none ml-auto max-w-[85%] text-right mb-2";
+            userBubble.innerText = topic === 'strategy' ? "Unlock Strategy" : topic.charAt(0).toUpperCase() + topic.slice(1);
+            content.appendChild(userBubble);
+            switch(topic) {
+                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale. It's safe and close."; break;
+                case 'tickets': answer = "We use Tiered Pricing: Youth shows start at $5. Major touring acts are $25-$40."; break;
+                case 'strategy': isStrategy = true; answer = "<strong>STRATEGY UNLOCKED:</strong><br>Review our <a href='marketing.html' class='underline font-bold text-[#A63E26]'>Strategic Documents</a> including the Case Study, Brand System, and Discovery Guide."; break;
+            }
+            setTimeout(() => {
+                const botBubble = document.createElement('div');
+                botBubble.className = isStrategy ? "bg-[#F2E2CE] border-l-4 border-[#A63E26] text-gray-800 p-2 rounded-lg inline-block max-w-[90%]" : "bg-gray-200 p-2 rounded-lg rounded-tl-none inline-block max-w-[85%]";
+                botBubble.innerHTML = answer;
+                content.appendChild(botBubble);
+                content.scrollTop = content.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>

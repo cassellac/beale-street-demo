@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beale Street Theater | The Heart of Route 66</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-black: #0A0B0D; --neon-teal: #009485; --neon-red: #F23030; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--neon-black); color: white; }
+        .neon-text-glow { text-shadow: 0 0 10px rgba(0, 148, 133, 0.7); }
+        .neon-box-glow { box-shadow: 0 0 15px rgba(0, 148, 133, 0.4); }
+        .chat-window { transition: all 0.3s ease-in-out; transform: translateY(120%); }
+        .chat-window.open { transform: translateY(0); }
+        .strategy-beacon { position: absolute; width: 20px; height: 20px; background-color: var(--neon-red); border-radius: 50%; cursor: pointer; z-index: 100; box-shadow: 0 0 0 rgba(242, 48, 48, 0.7); animation: pulse-red 2s infinite; }
+        .strategy-container:hover .strategy-popover, .strategy-container:focus-within .strategy-popover { display: block; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(242, 48, 48, 0); } 100% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0); } }
+        .strategy-popover { display: none; position: absolute; width: 300px; background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 15px; border-left: 5px solid var(--neon-red); border-radius: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 101; font-size: 0.8rem; line-height: 1.4; }
+        .strategy-popover h4 { color: var(--neon-red); font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden flex flex-col">
+    <div class="absolute inset-0 bg-pattern z-0 pointer-events-none"></div>
+
+    <div class="strategy-container" style="position: absolute; top: 110px; left: 50%; transform: translateX(-50%); z-index: 60;">
+        <div class="strategy-beacon" tabindex="0"></div>
+        <div class="strategy-popover" style="top: 30px; left: -140px;">
+            <h4>Strategic Intent: Identity</h4>
+            <p><strong>Objective:</strong> Execute "Digital Divorce."</p>
+            <p><strong>Tactic:</strong> Separate "Community Org" from "Nightlife Venue."</p>
+        </div>
+    </div>
+
+    <nav class="relative z-20 px-6 py-6 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <div class="text-2xl font-bold tracking-tighter text-white">
+            BEALE STREET <span class="text-[#009485]">THEATER</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
+            <a href="events.html" class="hover:text-[#009485] transition-colors">EVENTS</a>
+            <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
+            <a href="events.html" class="px-6 py-2 bg-[#009485] rounded-full hover:bg-opacity-90 transition-all neon-box-glow">TICKETS</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4 mt-10">
+        <img src="BST-logo.png" alt="Beale Street Theater Neon Logo" class="w-full max-w-lg mb-8 drop-shadow-2xl">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 uppercase">
+            The Heart of <span class="text-[#F23030] neon-text-glow">Route 66</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 font-light mb-2 tracking-widest">
+            RESTORED. REVITALIZED. READY FOR THE SHOW.
+        </p>
+        <div class="inline-block border border-gray-600 px-4 py-1 rounded mb-8 text-xs text-gray-400 uppercase tracking-[0.2em]">Established 1948</div>
+        <a href="events.html" class="group relative px-8 py-4 bg-[#009485] text-white font-bold rounded-full overflow-hidden transition-all hover:scale-105 neon-box-glow">
+            <span class="relative z-10">SEE CURRENT EVENTS</span>
+        </a>
+    </main>
+
+    <footer class="relative z-10 py-6 text-center text-gray-600 text-xs">
+        <p>&copy; 2025 Beale Street Theater. A Historic State Theater.</p>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div class="strategy-container" style="position: absolute; bottom: 18px; right: 70px; z-index: 60;">
+            <div class="strategy-beacon" tabindex="0"></div>
+            <div class="strategy-popover" style="bottom: 30px; right: 0;">
+                <h4>Strategic Intent: Friction Reduction</h4>
+                <p><strong>Problem:</strong> User friction on FAQs (Parking, Food).</p>
+                <p><strong>Solution:</strong> "Service over Sales."</p>
+            </div>
+        </div>
+
+        <div id="chatWindow" class="chat-window w-80 bg-white text-gray-800 rounded-xl shadow-2xl mb-4 overflow-hidden border-2 border-[#009485]">
+            <div class="bg-[#009485] p-4 text-white flex justify-between items-center">
+                <span class="font-bold">Box Office Buddy</span>
+                <button onclick="toggleChat()" class="text-white hover:text-gray-200">&times;</button>
+            </div>
+            <div id="chatContent" class="h-64 p-4 overflow-y-auto bg-gray-50 text-sm space-y-3">
+                <div class="bg-gray-200 p-2 rounded-lg rounded-tl-none inline-block max-w-[85%]">
+                    Hi! I'm your Box Office Buddy. Need help planning? Or... do you want to see the strategy?
+                </div>
+            </div>
+            <div class="p-2 bg-gray-100 grid grid-cols-2 gap-2">
+                <button onclick="askBot('parking')" class="text-xs bg-white border border-[#009485] text-[#009485] py-2 rounded hover:bg-[#009485] hover:text-white transition">🚗 Parking?</button>
+                <button onclick="askBot('food')" class="text-xs bg-white border border-[#009485] text-[#009485] py-2 rounded hover:bg-[#009485] hover:text-white transition">☕ Food/Drink?</button>
+                <button onclick="askBot('tickets')" class="text-xs bg-white border border-[#009485] text-[#009485] py-2 rounded hover:bg-[#009485] hover:text-white transition">🎟️ Prices?</button>
+                <button onclick="askBot('strategy')" class="text-xs bg-[#F23030] text-white py-2 rounded hover:bg-[#c41e1e] transition font-bold">🧠 Strategy Mode</button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="bg-[#009485] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-[#007f72] transition-colors neon-box-glow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
+        function askBot(topic) {
+            const content = document.getElementById('chatContent');
+            let answer = "";
+            let isStrategy = false;
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-[#009485] text-white p-2 rounded-lg rounded-tr-none ml-auto max-w-[85%] text-right mb-2";
+            userBubble.innerText = topic === 'strategy' ? "Unlock Strategy" : topic.charAt(0).toUpperCase() + topic.slice(1);
+            content.appendChild(userBubble);
+            switch(topic) {
+                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale."; break;
+                case 'food': answer = "Pre-show? Hit 'Beale Street Brews' for hot cocoa and steamers right next door."; break;
+                case 'tickets': answer = "We use Tiered Pricing: Youth shows start at $5. Major touring acts are $25-$40."; break;
+                // UPDATED LINKING STRATEGY
+                case 'strategy': isStrategy = true; answer = "<strong>STRATEGY UNLOCKED:</strong><br>Review our <a href='marketing.html' class='underline font-bold text-[#A63E26]'>Strategic Documents</a> including the Case Study, Brand System, and Discovery Guide."; break;
+            }
+            setTimeout(() => {
+                const botBubble = document.createElement('div');
+                botBubble.className = isStrategy ? "bg-[#F2E2CE] border-l-4 border-[#A63E26] text-gray-800 p-2 rounded-lg inline-block max-w-[90%]" : "bg-gray-200 p-2 rounded-lg rounded-tl-none inline-block max-w-[85%]";
+                botBubble.innerHTML = answer;
+                content.appendChild(botBubble);
+                content.scrollTop = content.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
