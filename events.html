@@ -21,7 +21,7 @@
         .event-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
         .btn-pill { background-color: var(--neon-teal); color: white; border-radius: 9999px; padding: 0.5rem 1.5rem; font-weight: 600; transition: background-color 0.2s; }
         .btn-pill:hover { background-color: #007f72; }
-        .strategy-beacon { position: absolute; width: 20px; height: 20px; background-color: var(--neon-red); border-radius: 50%; cursor: pointer; z-index: 100; animation: pulse-red 2s infinite; }
+        .strategy-beacon { position: absolute; width: 20px; height: 20px; background-color: var(--neon-red); border-radius: 50%; cursor: pointer; z-index: 90; animation: pulse-red 2s infinite; }
         .strategy-container:hover .strategy-popover, .strategy-container:focus-within .strategy-popover { display: block; }
         @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(242, 48, 48, 0); } 100% { box-shadow: 0 0 0 0 rgba(242, 48, 48, 0); } }
         .strategy-popover { display: none; position: absolute; width: 300px; background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 15px; border-left: 5px solid var(--neon-red); border-radius: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 101; font-size: 0.8rem; line-height: 1.4; }
@@ -37,7 +37,7 @@
                 <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
             </div>
             
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 border border-gray-700 rounded bg-[#0A0B0D]">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -50,11 +50,11 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#0A0B0D] border border-gray-800 rounded-lg p-4 absolute left-4 right-4 z-50 shadow-xl">
-            <div class="flex flex-col space-y-4 text-center">
-                <a href="events.html" class="text-[#009485] hover:text-white transition-colors py-2 border-b border-gray-800">EVENTS</a>
-                <a href="marketing.html" class="text-white hover:text-[#009485] transition-colors py-2 border-b border-gray-800">MARKETING CONTENT</a>
-                <a href="events.html" class="inline-block px-6 py-2 bg-[#009485] text-white rounded-full hover:bg-opacity-90 transition-all mt-2">TICKETS</a>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#0A0B0D] border-b border-gray-800 z-[100] shadow-2xl">
+            <div class="flex flex-col p-4 space-y-2">
+                <a href="events.html" class="block w-full text-center text-[#009485] py-4 border-b border-gray-800 text-lg font-bold">EVENTS</a>
+                <a href="marketing.html" class="block w-full text-center text-white hover:text-[#009485] py-4 border-b border-gray-800 text-lg font-semibold">MARKETING CONTENT</a>
+                <a href="events.html" class="block w-full text-center bg-[#009485] text-white py-4 rounded-full mt-2 font-bold shadow-lg">TICKETS</a>
             </div>
         </div>
     </nav>
@@ -166,7 +166,7 @@
     <script>
         function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
         
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle Script
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileBtn && mobileMenu) {
@@ -186,6 +186,7 @@
             switch(topic) {
                 case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale. It's safe and close."; break;
                 case 'tickets': answer = "We use Tiered Pricing: Youth shows start at $5. Major touring acts are $25-$40."; break;
+                // UPDATED LINKING STRATEGY
                 case 'strategy': isStrategy = true; answer = "<strong>STRATEGY UNLOCKED:</strong><br>Review our <a href='marketing.html' class='underline font-bold text-[#A63E26]'>Strategic Documents</a> including the Case Study, Brand System, and Discovery Guide."; break;
             }
             setTimeout(() => {
