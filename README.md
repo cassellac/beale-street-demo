@@ -19,7 +19,7 @@ This repository hosts the high-fidelity proof-of-concept for the **Beale Street 
 * **Core:** Semantic HTML5
 * **Styling:** Tailwind CSS (CDN) + Custom CSS Variables for Brand Systems
 * **Typography:** Montserrat (Stability) & Playfair Display (Heritage)
-* **Interactivity:** Vanilla JavaScript (Chatbot Logic & Modal State Management)
+* **Interactivity:** Vanilla JavaScript - Chatbot Logic & Modal State Management
 
 ##  License & Rights
 **Source Code:** The underlying code structure is licensed under the **MIT License**.
