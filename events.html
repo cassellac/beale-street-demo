@@ -10,6 +10,14 @@
         :root { --neon-black: #0A0B0D; --neon-teal: #009485; --neon-red: #F23030; }
         body { font-family: 'Montserrat', sans-serif; background-color: #F3F4F6; }
         .header-bg { background-color: var(--neon-black); border-bottom: 4px solid #F23030; }
+        /* ASSET 5 FIX: 100% Fill */
+        .bg-pattern { 
+            background-image: url('Asset 5.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            opacity: 1; 
+        }
         .event-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
         .btn-pill { background-color: var(--neon-teal); color: white; border-radius: 9999px; padding: 0.5rem 1.5rem; font-weight: 600; transition: background-color 0.2s; }
         .btn-pill:hover { background-color: #007f72; }
@@ -23,14 +31,31 @@
 </head>
 <body class="relative">
 
-    <nav class="header-bg px-6 py-6 flex justify-between items-center text-white relative">
-        <div class="text-2xl font-bold tracking-tighter">
-            <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
+    <nav class="header-bg px-6 py-6 relative z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
+            <div class="text-2xl font-bold tracking-tighter">
+                <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
+                <a href="events.html" class="text-[#009485]">EVENTS</a>
+                <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
+                <a href="events.html" class="btn-pill">TICKETS</a>
+            </div>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
-            <a href="events.html" class="text-[#009485]">EVENTS</a>
-            <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
-            <a href="events.html" class="btn-pill">TICKETS</a>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#0A0B0D] border border-gray-800 rounded-lg p-4 absolute left-4 right-4 z-50 shadow-xl">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="events.html" class="text-[#009485] hover:text-white transition-colors py-2 border-b border-gray-800">EVENTS</a>
+                <a href="marketing.html" class="text-white hover:text-[#009485] transition-colors py-2 border-b border-gray-800">MARKETING CONTENT</a>
+                <a href="events.html" class="inline-block px-6 py-2 bg-[#009485] text-white rounded-full hover:bg-opacity-90 transition-all mt-2">TICKETS</a>
+            </div>
         </div>
     </nav>
 
@@ -140,6 +165,16 @@
 
     <script>
         function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
+        
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
         function askBot(topic) {
             const content = document.getElementById('chatContent');
             let answer = "";
