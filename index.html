@@ -11,6 +11,13 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--neon-black); color: white; }
         .neon-text-glow { text-shadow: 0 0 10px rgba(0, 148, 133, 0.7); }
         .neon-box-glow { box-shadow: 0 0 15px rgba(0, 148, 133, 0.4); }
+        .bg-pattern { 
+            background-image: url('Asset 5.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            opacity: 1; 
+        }
         .chat-window { transition: all 0.3s ease-in-out; transform: translateY(120%); }
         .chat-window.open { transform: translateY(0); }
         .strategy-beacon { position: absolute; width: 20px; height: 20px; background-color: var(--neon-red); border-radius: 50%; cursor: pointer; z-index: 100; box-shadow: 0 0 0 rgba(242, 48, 48, 0.7); animation: pulse-red 2s infinite; }
@@ -32,14 +39,31 @@
         </div>
     </div>
 
-    <nav class="relative z-20 px-6 py-6 flex justify-between items-center max-w-7xl mx-auto w-full">
-        <div class="text-2xl font-bold tracking-tighter text-white">
-            BEALE STREET <span class="text-[#009485]">THEATER</span>
+    <nav class="relative z-20 px-6 py-6 max-w-7xl mx-auto w-full">
+        <div class="flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-white">
+                BEALE STREET <span class="text-[#009485]">THEATER</span>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
+                <a href="events.html" class="hover:text-[#009485] transition-colors">EVENTS</a>
+                <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
+                <a href="events.html" class="px-6 py-2 bg-[#009485] rounded-full hover:bg-opacity-90 transition-all neon-box-glow">TICKETS</a>
+            </div>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide items-center">
-            <a href="events.html" class="hover:text-[#009485] transition-colors">EVENTS</a>
-            <a href="marketing.html" class="hover:text-[#009485] transition-colors">MARKETING CONTENT</a>
-            <a href="events.html" class="px-6 py-2 bg-[#009485] rounded-full hover:bg-opacity-90 transition-all neon-box-glow">TICKETS</a>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#0A0B0D] border border-gray-800 rounded-lg p-4 absolute left-0 right-0 z-50 shadow-xl mx-4">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="events.html" class="text-white hover:text-[#009485] transition-colors py-2 border-b border-gray-800">EVENTS</a>
+                <a href="marketing.html" class="text-white hover:text-[#009485] transition-colors py-2 border-b border-gray-800">MARKETING CONTENT</a>
+                <a href="events.html" class="inline-block px-6 py-2 bg-[#009485] text-white rounded-full hover:bg-opacity-90 transition-all mt-2">TICKETS</a>
+            </div>
         </div>
     </nav>
 
@@ -97,6 +121,16 @@
 
     <script>
         function toggleChat() { document.getElementById('chatWindow').classList.toggle('open'); }
+        
+        // Mobile Menu Toggle Script
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
         function askBot(topic) {
             const content = document.getElementById('chatContent');
             let answer = "";
@@ -106,7 +140,7 @@
             userBubble.innerText = topic === 'strategy' ? "Unlock Strategy" : topic.charAt(0).toUpperCase() + topic.slice(1);
             content.appendChild(userBubble);
             switch(topic) {
-                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale."; break;
+                case 'parking': answer = "Easy! Plenty of parking on adjacent streets near 3rd and Beale. It's safe and close."; break;
                 case 'food': answer = "Pre-show? Hit 'Beale Street Brews' for hot cocoa and steamers right next door."; break;
                 case 'tickets': answer = "We use Tiered Pricing: Youth shows start at $5. Major touring acts are $25-$40."; break;
                 // UPDATED LINKING STRATEGY
