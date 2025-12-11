@@ -29,8 +29,8 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(0,0,0,0.95); /* Darker for better contrast */
-            z-index: 10000; /* Highest priority to sit above everything */
+            background: rgba(0,0,0,0.95); 
+            z-index: 10000; /* Max Priority */
             padding: 1rem;
             align-items: center; 
             justify-content: center;
@@ -41,15 +41,15 @@
             color: #1a1a1a;
             width: 100%;
             max-width: 900px;
-            max-height: 85vh; /* Slightly smaller to fit mobile screens better */
+            max-height: 85vh; 
             border-radius: 8px;
             position: relative;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
         .modal-header {
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -61,9 +61,9 @@
         .modal-body {
             padding: 1.5rem;
             overflow-y: auto; 
+            -webkit-overflow-scrolling: touch;
         }
         .close-modal { font-size: 2rem; cursor: pointer; color: #F23030; line-height: 1; padding: 0.5rem; }
-        .close-modal:hover { color: #d12020; }
         
         /* Chatbot Styling */
         .chat-window { transition: all 0.3s ease-in-out; transform: translateY(120%); }
@@ -75,22 +75,19 @@
         .prose p { margin-bottom: 1em; line-height: 1.6; }
         .prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
         .prose li { margin-bottom: 0.5em; }
-        .prose table { width: 100%; border-collapse: collapse; margin: 1em 0; }
-        .prose th, .prose td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        .prose th { background-color: #f2f2f2; font-weight: bold; }
     </style>
 </head>
 <body class="relative min-h-screen flex flex-col">
     <div class="absolute inset-0 bg-pattern z-0 pointer-events-none"></div>
 
-    <nav class="relative z-20 px-6 py-6 border-b border-gray-800 bg-[#0A0B0D]/80 backdrop-blur-sm">
+    <nav class="relative z-50 px-6 py-6 border-b border-gray-800 bg-[#0A0B0D]/95 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
             <div class="text-2xl font-bold tracking-tighter text-white">
                 <a href="index.html">BEALE STREET <span class="text-[#009485]">THEATER</span></a>
             </div>
             
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 border border-gray-700 rounded">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 border border-gray-700 rounded bg-[#0A0B0D]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
@@ -102,11 +99,11 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#0A0B0D] border border-gray-800 rounded-lg p-4 absolute left-4 right-4 z-50 shadow-xl">
-            <div class="flex flex-col space-y-4 text-center">
-                <a href="events.html" class="text-white hover:text-[#009485] transition-colors py-3 border-b border-gray-800 font-semibold">EVENTS</a>
-                <a href="marketing.html" class="text-[#009485] font-bold hover:text-white transition-colors py-3 border-b border-gray-800">MARKETING CONTENT</a>
-                <a href="events.html" class="inline-block px-6 py-3 bg-[#009485] text-white rounded-full hover:bg-opacity-90 transition-all mt-2 font-bold">TICKETS</a>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#0A0B0D] border-b border-gray-800 z-[100] shadow-2xl">
+            <div class="flex flex-col p-4 space-y-2">
+                <a href="events.html" class="block w-full text-center text-white hover:text-[#009485] py-4 border-b border-gray-800 text-lg font-semibold">EVENTS</a>
+                <a href="marketing.html" class="block w-full text-center text-[#009485] py-4 border-b border-gray-800 text-lg font-bold">MARKETING CONTENT</a>
+                <a href="events.html" class="block w-full text-center bg-[#009485] text-white py-4 rounded-full mt-2 font-bold shadow-lg">TICKETS</a>
             </div>
         </div>
     </nav>
@@ -116,42 +113,42 @@
         <p class="text-gray-400 mb-12 text-center md:text-left">Internal documentation, brand systems, and content marketing assets.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div onclick="openModal('modal-blog')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+            <div onclick="openModal('modal-blog')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-[#009485] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Local Spots Guide</h3>
                 <p class="text-sm text-gray-400">Targeting visiting artists & tourists. Full directory of local partners.</p>
                 <span class="text-[#009485] text-xs font-bold mt-4 inline-block group-hover:underline">READ FULL POST &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-case')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+            <div onclick="openModal('modal-case')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-[#F23030] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Ghostwalk Success</h3>
                 <p class="text-sm text-gray-400">Strategic analysis of the $20k revenue potential and event logistics.</p>
                 <span class="text-[#F23030] text-xs font-bold mt-4 inline-block group-hover:underline">VIEW FULL STUDY &rarr;</span>
             </div>
 
-             <div onclick="openModal('modal-discovery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#EC6E31] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+             <div onclick="openModal('modal-discovery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#EC6E31] md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-[#EC6E31] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Discovery Workshop</h3>
                 <p class="text-sm text-gray-400">Complete workshop outline for aligning stakeholders on the brand.</p>
                 <span class="text-[#EC6E31] text-xs font-bold mt-4 inline-block group-hover:underline">VIEW OUTLINE &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-system')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-white rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+            <div onclick="openModal('modal-system')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-white md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-white mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Visual Brand System</h3>
                 <p class="text-sm text-gray-400">The "Neon Noir" vs. "Restoration Brick" design system breakdown.</p>
                 <span class="text-white text-xs font-bold mt-4 inline-block group-hover:underline">VIEW SYSTEM &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-guide')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+            <div onclick="openModal('modal-guide')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#009485] md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-[#009485] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Identity Guide</h3>
                 <p class="text-sm text-gray-400">The official 7-section guide on history, archetype, and voice.</p>
                 <span class="text-[#009485] text-xs font-bold mt-4 inline-block group-hover:underline">READ FULL GUIDE &rarr;</span>
             </div>
 
-            <div onclick="openModal('modal-gallery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] rounded-xl p-6 transition-all hover:-translate-y-2 active:scale-95">
+            <div onclick="openModal('modal-gallery')" class="group cursor-pointer bg-gray-900 border border-gray-800 hover:border-[#F23030] md:hover:-translate-y-2 rounded-xl p-6 transition-all active:bg-gray-800">
                 <div class="h-2 w-12 bg-[#F23030] mb-4"></div>
                 <h3 class="text-xl font-bold mb-2">Asset Library</h3>
                 <p class="text-sm text-gray-400">Access logos, favicons, infographics, and 3D renderings.</p>
@@ -163,62 +160,22 @@
     <div id="modal-blog" class="modal">
         <div class="modal-content-wrapper">
             <div class="modal-header">
-                <h2 class="text-2xl font-bold">A Guide to Local Spots Near Beale Street Theater</h2>
+                <h2 class="text-2xl font-bold">Local Spots Guide</h2>
                 <span onclick="closeModal('modal-blog')" class="close-modal">&times;</span>
             </div>
             <div class="modal-body prose max-w-none text-gray-700">
                 <p><strong>Introduction: Welcome to the Heartbeat of Historic Kingman</strong></p>
-                <p>Welcome to Kingman! As a visiting artist or performer at the historic Beale Street Theatre, you are more than a guest—you are an integral part of a significant cultural revival happening right here in our city. This guide is your insider's key to discovering the unique character, rich history, and local gems of a town in the midst of a renaissance. Kingman is vibrantly blending its iconic Route 66 legacy with a bold new vision for the future, and its story is told on every street corner. The spirit of this revival is championed by local figures like historian Jim Hinckley, whose stories bring our streets to life—stories you'll be able to hear for yourself. We invite you to explore, connect, and become part of our story.</p>
-                
-                <h3>1. Curated Local Businesses: Fuel Up, Shop, and Unwind</h3>
-                <p>Kingman offers a variety of local businesses perfectly suited to meet the needs of a busy performer, from a quick pre-show coffee run and a hearty meal to unique local shopping for a memento of your time here. The following list has been curated to provide you with convenient and character-rich options, categorized for easy reference and with a special focus on spots within walking distance of the theater. The best way to experience our town's authentic, welcoming spirit is to step inside and explore these local establishments.</p>
-
+                <p>Welcome to Kingman! As a visiting artist or performer at the historic Beale Street Theatre, you are more than a guest—you are an integral part of a significant cultural revival.</p>
+                <h3>1. Curated Local Businesses</h3>
                 <h4>1.1. Food & Drink</h4>
-                <p><strong>Beale Street Brews</strong><br>A beloved local hub just steps from the theater, Beale Street Brews is where the community gathers. It’s the perfect spot to absorb the town's morning rhythm or find a quiet moment with a craft beverage before your call time.</p>
-                <ul>
-                    <li><strong>Hot Beverages:</strong> Americano, Latte, Coffee (organic beans), Cafe au Lait, Cappuccino & Espresso, Chai Latte, Carmello (signature caramel), Mocha & White Chocolate Mocha, Hot Cocoa and Steamers, Shot in the Dark.</li>
-                    <li><strong>Cold Beverages:</strong> Iced Coffee, Iced Lattes, Iced Americano, Iced or Blended Mocha, Frappe`, Iced or Blended Chai Latte, Freshly Brewed Iced Tea, Italian Sodas (blended or iced), Slurry (Blended Italian Soda), Smoothies (100% Fruit).</li>
-                    <li><strong>Food Menu:</strong> Sandwiches (Breakfast Bagels, Southwest Chicken), Soup Sunday, Pastries (Bagels, Oatmeal, Cookies, Muffins).</li>
-                </ul>
-                <p>Notably, they roast and serve Organic and/or Fair Trade coffee, ensuring a high-quality and ethically sourced cup every time.</p>
-
-                <p><strong>Mr. D'z Route 66 Diner</strong><br>For a classic Route 66 dining experience steeped in nostalgia and Americana, look no further. This is the place to soak in the neon glow and enjoy a quintessential diner meal. <em>105 E Andy Devine (Rt. 66)</em></p>
-
-                <p><strong>El Palacio</strong><br>For authentic Sonoran-style Mexican cuisine, a local favorite for a post-rehearsal dinner. <em>401 E. Andy Devine Ave (Rt. 66)</em></p>
-
-                <p><strong>Jade Restaurant</strong><br>Offering classic Chinese-American dishes, a reliable choice for a quick and satisfying meal. <em>937 E. Andy Devine Ave (Rt. 66)</em></p>
-
-                <h4>1.2. Gift Shops & Other Businesses</h4>
-                <ul>
-                    <li><strong>Art Hub:</strong> A hub for local creativity where you might find inspiration or the perfect, one-of-a-kind memento from your time in Kingman. <em>402 E. Beale Street</em></li>
-                    <li><strong>Central Commercial:</strong> A historic cornerstone of downtown's commercial district, offering a glimpse into the town's foundational mercantile past. <em>112 N 4th Street</em></li>
-                    <li><strong>Chuckwalla:</strong> A unique shop where you can find eclectic gifts and souvenirs that capture the spirit of the desert. <em>Corner of Fourth & Andy Devine (Rt. 66)</em></li>
-                    <li><strong>Ramblin Rose:</strong> A charming local business offering unique finds and gifts, perfect for browsing during your downtime. <em>1001 E. Andy Devine Ave (Rt. 66)</em></li>
-                    <li><strong>Canada Mart:</strong> A convenient stop for snacks, drinks, and travel essentials with a friendly, local feel. <em>210 W. Andy Devine Ave (Rt. 66)</em></li>
-                    <li><strong>JCPenney's:</strong> A familiar department store for any necessities you may have forgotten to pack for your stay. <em>201 N 4th Street</em></li>
-                </ul>
-
-                <h3>2. Explore the Story of Kingman: An Insider's Tour</h3>
-                <p>Beyond the shops and cafes, the streets of Kingman themselves tell a story of wild-west outlaws, Route 66 travelers, and community reinvention. To truly connect with this history, we recommend the "Kingman Tours," a unique, self-guided way to immerse yourself in the town's rich heritage. These tours are narrated by Kingman's foremost historian and advocate, Jim Hinckley, offering you an authentic and personal connection to the past.</p>
-
-                <h4>2.1. The "Walkabout Kingman" with Jim Hinckley</h4>
-                <ul>
-                    <li><strong>Start Point:</strong> The tour begins at the life-sized bronze sculpture of Jim Hinckley, located at the historic Kingman Train Depot in Depot Plaza.</li>
-                    <li><strong>Interactive Experience:</strong> As you walk, you'll find plaques at each point of interest. Simply use your mobile device to scan the QR code on each plaque.</li>
-                    <li><strong>Expert Narration:</strong> Scanning the code provides an in-depth written description and unlocks an audio narration from Jim Hinckley himself, who explains the historical and cultural significance of each stop along the way.</li>
-                </ul>
-
-                <h4>2.2. Key Historical Sites & Points of Interest</h4>
-                <p>Key stops include: Statue of Jim Hinckley, Railroad Depot, Harvey House, Locomotive Park, Mohave Museum, Powerhouse Visitors Center, Metcalf Park, and more along Beale Street and Andy Devine Ave.</p>
-
-                <h4>2.3. Unique Local Experiences</h4>
-                <ul>
-                    <li><strong>Kingman Rental Bikes:</strong> Located in a beautifully renovated 1930s service station—a piece of history in itself—this is your ticket to two-wheeled exploration. Pedal past historic buildings, vibrant murals, and glowing neon signs, tracing the same paths that early Route 66 travelers once did.</li>
-                    <li><strong>Tin Can Alley on 66:</strong> If you’re looking for a truly unique lodging option, this spot blends nostalgia and novelty to create a fun and memorable experience for a new generation of travelers.</li>
-                </ul>
-
-                <h3>3. Conclusion: You're Part of the Kingman Renaissance</h3>
-                <p>We hope this guide helps you discover that Kingman is more than just a pit stop; it's a destination with character, charm, and a powerful story of reinvention. Thank you for bringing your talent to the Beale Street Theatre. Whether you're grabbing a coffee at Beale Street Brews before rehearsal, exploring the neon-lit history of Route 66, or listening to Jim Hinckley's voice bring the past to life at the old train depot, you are part of our story. Your performance is a vital contribution to our town's ongoing cultural renaissance. We encourage you to explore our streets, meet our people, and feel the spirit of a community that is deeply proud of its past and incredibly excited for its future. Enjoy your stay.</p>
+                <p><strong>Beale Street Brews:</strong> A beloved local hub just steps from the theater.</p>
+                <p><strong>Mr. D'z Route 66 Diner:</strong> Classic 66 Americana.</p>
+                <p><strong>El Palacio:</strong> Authentic Sonoran-style Mexican cuisine.</p>
+                <h4>1.2. Shopping</h4>
+                <p><strong>Art Hub:</strong> 402 E. Beale St. For local creativity.</p>
+                <p><strong>Chuckwalla:</strong> Eclectic desert gifts.</p>
+                <h3>2. Insider's Tour</h3>
+                <p>Check out the "Walkabout Kingman" with Jim Hinckley starting at the Train Depot.</p>
             </div>
         </div>
     </div>
@@ -226,55 +183,18 @@
     <div id="modal-case" class="modal">
         <div class="modal-content-wrapper">
             <div class="modal-header">
-                <h2 class="text-2xl font-bold">The Ghostwalk Success Story: A Case Study</h2>
+                <h2 class="text-2xl font-bold">Ghostwalk Case Study</h2>
                 <span onclick="closeModal('modal-case')" class="close-modal">&times;</span>
             </div>
             <div class="modal-body prose max-w-none text-gray-700">
-                <h3>Introduction: Anatomy of a Successful Community Tradition</h3>
-                <p>Each year, the Beale Street Theater’s "Annual Historical Ghostwalks" transform the streets of downtown Kingman, Arizona, into a stage for history, mystery, and performance. From a strategic event management perspective, its success is no accident. What began as a local event has evolved into a cherished community tradition, anticipated by residents and visitors alike over its run on two weekends each fall (specifically October 17, 18, 24, and 25). This case study deconstructs the key strategic, logistical, and commercial elements that make the Ghostwalks a repeatable success. By examining its core components, we can uncover a valuable model for other community organizations aiming to create memorable, sustainable, and highly successful public events.</p>
-
-                <h3>1. The Core Experience: Weaving History, Performance, and Thrills</h3>
-                <p>A unique and compelling theme is the foundation upon which any successful event is built; it is the primary driver for attracting an audience and creating a lasting, memorable experience. The Ghostwalks excel by offering a concept that is both distinct and deeply rooted in the local community, demonstrating a masterful blend of entertainment and cultural engagement.</p>
-                <h4>1.1. Analyzing the Value Proposition</h4>
-                <p>The event's core value proposition lies in its sophisticated fusion of "eerie tales," "ghostly encounters," and authentic local history. This is not a simple walking tour; it is an immersive piece of street theater. By employing "talented actors and performers" to bring Kingman's "haunted past to life," the organizers elevate the experience from passive observation to active participation. This strategic choice transforms a historical lecture into a "chilling tradition," securing its place as a staple of the local Halloween season.</p>
-                <h4>1.2. The Power of a Dual-Offering Structure</h4>
-                <p>A key strategic decision is the provision of two distinct tour options, which broadens the event's appeal and enhances its operational capacity. This dual structure allows the organization to cater to different interests and manage guest flow more effectively.</p>
+                <h3>Introduction</h3>
+                <p>The Beale Street Theater’s "Annual Historical Ghostwalks" transform downtown Kingman into a stage for history and mystery.</p>
+                <h3>Key Success Factors</h3>
                 <ul>
-                    <li><strong>Lost Souls Tour:</strong> Includes entry into the iconic Beale Street Theater. Appeals to those interested in performance art and local landmarks.</li>
-                    <li><strong>Haunted Whispers Tour:</strong> Includes entry into the historic Odd Fellows Hall. Targets audiences fascinated by paranormal history or the mystique of secret societies.</li>
+                    <li><strong>Concept:</strong> Fusion of eerie tales and local history.</li>
+                    <li><strong>Revenue:</strong> Potential $20,000 gross over 4 nights ($25/ticket).</li>
+                    <li><strong>Logistics:</strong> Two tours (Lost Souls & Haunted Whispers) departing every 30 mins.</li>
                 </ul>
-                <h4>1.3. The Signature Finale: Creating a Memorable Climax</h4>
-                <p>Both tours, despite their separate journeys, converge at a shared physical endpoint—the City Complex on 4th and Oak—for a spectacular conclusion: a "spectacular Thriller dance finale." This is a brilliant strategic move. By uniting all participants at a single location for a shared performance, it fosters a sense of communal experience after their separate adventures.</p>
-
-                <h3>2. A Masterclass in Complex Event Logistics</h3>
-                <p>While a great concept attracts guests, it is flawless execution that earns their trust and ensures repeat business. The sophisticated operational framework of the Ghostwalks demonstrates a deep understanding of event management.</p>
-                <h4>2.1. Deconstructing the High-Frequency Schedule</h4>
-                <p>The event’s schedule is both ambitious and highly demanding. Tours depart "every 30 minutes from 7:00 PM to 9:00 PM," with each tour lasting "approximately one hour." This high-frequency model implies a complex and tightly coordinated operation requiring precise timing, robust staffing, and effective crowd control.</p>
-                <h4>2.2. Managing Multiple Venues and Routes</h4>
-                <p>The logistical challenge is magnified by the management of two distinct, concurrent routes through public spaces. The "Lost Souls Tour" navigates 4th Street, Beale Street, and Andy Devine, while the "Haunted Whispers Tour" covers a separate path along Beale, 5th Street, and Spring Street.</p>
-                <h4>2.3. Pre-Event Coordination and Guest Management</h4>
-                <p>Effective logistics begin long before the first tour departs. The instruction for guests to "arrive at least 15 minutes early to collect wristbands" is a critical logistical control point. This staggers arrivals, allows staff to verify tickets, and ensures that tours can "depart promptly."</p>
-
-                <h3>3. The Commercial Engine: Revenue Strategy and Market Demand</h3>
-                <p>For any community-focused event to become a long-standing tradition, it requires a sound commercial strategy to ensure its financial viability.</p>
-                <h4>3.1. Pricing, Accessibility, and Revenue Potential</h4>
-                <p>With a ticket price of "$25 (plus applicable fees)," the event is positioned as a premium, yet accessible, local entertainment option. The event's revenue potential is significant:</p>
-                <ul>
-                    <li><strong>Tour Slots:</strong> 5 departure times per night (7:00 - 9:00 PM).</li>
-                    <li><strong>Total Tours:</strong> 40 total tours (5 slots x 2 tours x 4 nights).</li>
-                    <li><strong>Potential Revenue:</strong> Assuming 20 guests per tour, this structure creates a potential gross revenue of $20,000 (40 tours x 20 guests x $25/ticket).</li>
-                </ul>
-                <h4>3.2. Streamlining Sales: Digital and Traditional Channels</h4>
-                <p>The event utilizes a modern, dual-channel approach to ticket sales. The primary method is online via the official website, with a phone line for ticket purchases to ensure accessibility.</p>
-                <h4>3.3. Interpreting Market Demand</h4>
-                <p>The confident statement that "Tickets are expected to sell out quickly" is a key indicator of the event's established success and powerful brand recognition within the community.</p>
-
-                <h3>4. Building Trust Through Clear Audience Communication</h3>
-                <p>Strategic communication is crucial for managing audience expectations, ensuring guest safety, and protecting an organization's reputation. The organizers proactively provide clear advisories including warnings about "loud noises," "fog," and content suitability for young children.</p>
-                <p>Of critical importance is the explicit disclosure that the "Haunted Whispers Tour is not ADA accessible." This upfront transparency is a hallmark of a responsible and professional event organizer.</p>
-
-                <h3>5. Conclusion: A Blueprint for a Successful Community Event</h3>
-                <p>The Beale Street Theater's Annual Historical Ghostwalks stand as an exemplary case study in event management. Its enduring success is not accidental but the result of a carefully balanced and professionally executed strategy.</p>
             </div>
         </div>
     </div>
@@ -282,56 +202,16 @@
     <div id="modal-discovery" class="modal">
         <div class="modal-content-wrapper">
             <div class="modal-header">
-                <h2 class="text-2xl font-bold">Branding Discovery Workshop Outline</h2>
+                <h2 class="text-2xl font-bold">Discovery Workshop</h2>
                 <span onclick="closeModal('modal-discovery')" class="close-modal">&times;</span>
             </div>
             <div class="modal-body prose max-w-none text-gray-700">
-                <p>A strong workshop here should connect three things: the venue’s vibe, Route 66 tourism, and the local Kingman community. Below is a half‑day outline you can easily expand or compress.</p>
-                
-                <h3>1. Workshop setup (15–20 min)</h3>
+                <p><strong>Goal:</strong> Define purpose, audience, and a first-draft tagline.</p>
+                <h3>Agenda</h3>
                 <ul>
-                    <li><strong>Participants:</strong> owners/manager, bar/FOH lead, tech, 1–2 loyal patrons, plus a tourism or downtown rep if possible.</li>
-                    <li><strong>Goals slide:</strong> agree that the outcome is a simple brand foundation: purpose, audience, personality, UVP, and a first‑draft tagline for a Route 66–adjacent venue in Kingman.</li>
-                    <li>Have everyone share one favorite memory in the space or on Route 66 to set the tone.</li>
-                </ul>
-
-                <h3>2. Context & Audit (30–40 min)</h3>
-                <ul>
-                    <li><strong>Quick input:</strong> review current logo, socials, Google listing, and event photos, plus 3–5 competing or comparable venues (local and regional) to surface what’s working and what’s confusing.</li>
-                    <li><strong>Route 66 + Kingman tourism snapshot:</strong> highlight that Kingman positions itself as “the Heart of Historic Route 66” and attracts both nostalgia road‑trippers and outdoor travelers.</li>
-                    <li>Capture key phrases people already associate with the venue and with Kingman (e.g., “stop on the Mother Road,” “locals’ living room,” “intimate live music”).</li>
-                </ul>
-
-                <h3>3. Brand foundations (45–60 min)</h3>
-                <p>Work through three fast exercises on sticky notes or a shared board:</p>
-                <ul>
-                    <li><strong>Purpose & vision:</strong> “Why does this venue exist beyond selling tickets?” and “What do we want to be known for on Route 66 in 5 years?”</li>
-                    <li><strong>Audience personas:</strong> define 2–3 core groups: e.g., Kingman locals, Route 66 road‑trippers, weekend visitors from Vegas/Phoenix, each with needs, fears, and what “a great night” means for them.</li>
-                    <li><strong>Personality sliders:</strong> choose where the brand sits between pairs like Vintage ↔ Modern, Gritty ↔ Polished, Tourist‑y ↔ Local‑first, Chill ↔ High‑energy.</li>
-                </ul>
-
-                <h3>4. Positioning & Route 66 story (45–60 min)</h3>
-                <p>Turn the foundations into sharper language:</p>
-                <ul>
-                    <li><strong>UVP statement:</strong> facilitate a fill‑in like “For [audience], our venue is the [type of place] on Route 66 in Kingman that delivers [core benefit] because [proof/unique assets].”</li>
-                    <li><strong>Place‑based story:</strong> map how the venue uses its “1 block from Route 66” location—pre‑ and post‑festival hub, live‑music stop on road trips, partner to museums and local attractions, etc.</li>
-                    <li>End this block with 3–5 “brand pillars” such as “Historic Route 66 energy,” “intimate live performances,” “local community anchor.”</li>
-                </ul>
-
-                <h3>5. Visuals, voice, and experience (45–60 min)</h3>
-                <p>Translate strategy into things guests will feel:</p>
-                <ul>
-                    <li><strong>Visual moodboard:</strong> collect references of signage, neon, old motels, classic cars, and existing Kingman Route 66 imagery to decide on colors, typography, and textures.</li>
-                    <li><strong>Tone of voice:</strong> choose 3 adjectives (e.g., “welcoming, playful, rooted in history”) and write a sample social post and show description that sound like the venue.</li>
-                    <li>Also map key experience touchpoints (front door, stage sightlines, bar, merch, photo ops) and ask, “What should guests say when they leave?” to align brand and on‑site reality.</li>
-                </ul>
-
-                <h3>6. Next steps & AI/CMS integration (20–30 min)</h3>
-                <p>Close with an implementation plan:</p>
-                <ul>
-                    <li><strong>Deliverables:</strong> one‑page brand summary (purpose, personas, UVP, pillars, tone), a basic style guide draft, and 3–5 messaging examples for web, socials, and print.</li>
-                    <li><strong>Systems:</strong> define a simple CMS or website setup where each event uses consistent fields and brand voice, and note where AI can help generate on‑brand copy, summarize guest feedback, and experiment with Route 66‑themed campaigns at scale.</li>
-                    <li>Assign owners and timelines for polishing the brand doc, updating visuals, and aligning future marketing around “small concert venue, big Route 66 story” as the core identity.</li>
+                    <li><strong>Setup (20 min):</strong> Share favorite Route 66 memories.</li>
+                    <li><strong>Context (40 min):</strong> Review competitors and Kingman tourism data.</li>
+                    <li><strong>Foundations (60 min):</strong> Define Personas (Locals vs Tourists) and Vibe (Vintage vs Modern).</li>
                 </ul>
             </div>
         </div>
@@ -353,7 +233,6 @@
                             <div class="w-12 h-12 bg-[#F23030] rounded shadow-[0_0_10px_#F23030]"></div>
                             <div class="w-12 h-12 bg-[#009485] rounded shadow-[0_0_10px_#009485]"></div>
                         </div>
-                        <p class="text-xs text-gray-500"><strong>Use Case:</strong> Concert posters, social media ads, nightlife. High contrast, dark backgrounds.</p>
                     </div>
                     <div class="bg-[#FAF9F6] text-gray-800 p-6 rounded-lg shadow-xl border">
                         <h3 class="text-xl font-bold text-[#A63E26] mb-2">System B: Restoration Brick</h3>
@@ -363,7 +242,6 @@
                             <div class="w-12 h-12 bg-[#F2E2CE] rounded"></div>
                             <div class="w-12 h-12 bg-[#5A7073] rounded"></div>
                         </div>
-                        <p class="text-xs text-gray-500"><strong>Use Case:</strong> Youth theater playbills, fundraising, educational materials. Warm, natural light.</p>
                     </div>
                 </div>
             </div>
@@ -373,50 +251,17 @@
     <div id="modal-guide" class="modal">
         <div class="modal-content-wrapper">
             <div class="modal-header">
-                <h2 class="text-2xl font-bold">The Heart of Route 66: Identity Guide</h2>
+                <h2 class="text-2xl font-bold">Identity Guide</h2>
                 <span onclick="closeModal('modal-guide')" class="close-modal">&times;</span>
             </div>
             <div class="modal-body prose max-w-none text-gray-700">
-                <h3>1.0 Introduction: Our Stage, Our Story</h3>
-                <p>The Beale Street Theater is more than a venue; it is a cultural cornerstone for Kingman, Arizona, representing both a rich history tied to the golden age of Route 66 and a vibrant future for the community's performing arts. Its restoration from a historic landmark into a modern performing arts center marks a significant moment in the city's ongoing renaissance.</p>
-                <p>This guide defines the core principles of our brand, ensuring that every poster, performance, and partnership communicates a consistent and compelling story.</p>
-
-                <h3>2.0 Our Heritage: From Historic Landmark to Community Renaissance</h3>
-                <p>The strategic importance of the theater's history cannot be overstated. Its legacy as the former State Theatre on historic Route 66 is not merely a footnote but a core element of its modern identity.</p>
+                <h3>Our Archetype: The Nurturing Storyteller</h3>
                 <ul>
-                    <li><strong>The State Theatre:</strong> Originally built in the post-war boom and opening its doors circa 1948-1949.</li>
-                    <li><strong>A Route 66 Icon:</strong> Situated in the Kingman Historic District, the theater is an authentic piece of Americana.</li>
-                    <li><strong>Community-Powered:</strong> The restoration is a true community effort, brought to life through the dedication of volunteers and support of local businesses like T. R. Orr Inc. and Angle Homes.</li>
+                    <li><strong>The Storyteller:</strong> A vessel for human expression (Touring acts, Ghostwalks).</li>
+                    <li><strong>The Nurturer:</strong> Passionately committed to arts education.</li>
                 </ul>
-
-                <h3>3.0 Our Archetype: The Nurturing Storyteller</h3>
-                <p>To capture the essence of our brand, we embrace a dual archetype.</p>
-                <h4>3.1 The Storyteller: A Stage for Every Voice</h4>
-                <p>As a Storyteller, the theater is a vessel for a wide spectrum of human expression. Programming includes classic musicals like <em>Annie</em>, immersive events like <em>The Polar Express Experience</em>, and high-energy touring acts.</p>
-                <h4>3.2 The Nurturer: Cultivating Kingman's Future Artists</h4>
-                <p>As a Nurturer, the theater is passionately committed to arts education. This is demonstrated through programs like the Beale St. Youth Theater, Disney Musical in Schools, and the Youth Concert Band.</p>
-
-                <h3>4.0 Our Visual Language: Neon, Nostalgia, and Community Art</h3>
-                <p>The theater's visual identity is a deliberate blend of retro Route 66 nostalgia and modern community spirit. From the glow of our logo to the bricks of our building, these visual elements are the first handshake with our audience.</p>
-                <ul>
-                    <li><strong>The Logo:</strong> Designed to evoke the classic neon signs that once lit up the Mother Road.</li>
-                    <li><strong>System A: Neon Noir:</strong> High-contrast, energetic pairings (Black/Teal) for nightlife.</li>
-                    <li><strong>System B: Restoration Brick:</strong> Grounded and historic (Heritage Red/Warm Mortar) for community connection.</li>
-                </ul>
-
-                <h3>5.0 Our Voice: Encouraging, Straightforward, and Community-Focused</h3>
-                <p>All communications should reflect our personality: welcoming, passionate about the arts, and deeply connected to Kingman.</p>
-                <ul>
-                    <li><strong>Encouraging:</strong> "Brave the stage." We uplift and inspire.</li>
-                    <li><strong>Straightforward:</strong> Clear and accessible. We avoid industry jargon.</li>
-                    <li><strong>Community-Centric:</strong> "For Kingman, by Kingman." We speak as a proud member of the community.</li>
-                </ul>
-
-                <h3>6.0 Our Audiences: A Welcoming Space for All</h3>
-                <p>We serve distinct groups: The Kingman Local Community (local pride), Youth & Families (nurturing space), Tourists & Route 66 Travelers (authentic history), and Touring Artists (professional venue).</p>
-
-                <h3>7.0 Living Our Brand: One Stage, Countless Stories</h3>
-                <p>The Beale Street Theater's brand is a living identity. To guide us, we embrace a simple, powerful story: <em>The small Route 66 venue where Kingman’s young artists grow up on stage, and national acts share the same room.</em></p>
+                <h3>Our Voice</h3>
+                <p>Encouraging, Straightforward, and Community-Centric ("For Kingman, by Kingman").</p>
             </div>
         </div>
     </div>
@@ -439,14 +284,13 @@
                         </video>
                         <span class="text-gray-800 text-xs uppercase tracking-widest">3D Rendering</span>
                     </div>
-
                     <div class="text-center p-4 border border-gray-700 rounded bg-black">
                         <img src="Local Guide Template.png" class="h-32 mx-auto object-contain mb-4">
                         <span class="text-gray-400 text-xs uppercase tracking-widest">Local Spots Infographic</span>
                     </div>
                     <div class="text-center p-4 border border-gray-700 rounded bg-gray">
                         <div class="h-32 w-full bg-[url('BST Pattern.png')] bg-cover bg-no-repeat bg-center mb-4 rounded border border-gray-600"></div>
-                        <span class="text-gray-400 text-xs uppercase tracking-widest">Beale Street Theater Pattern</span>
+                        <span class="text-gray-400 text-xs uppercase tracking-widest">Beale Street Pattern</span>
                     </div>
                 </div>
             </div>
@@ -461,7 +305,7 @@
             </div>
             <div id="chatContent" class="h-64 p-4 overflow-y-auto bg-gray-50 text-sm space-y-3">
                 <div class="bg-gray-200 p-2 rounded-lg rounded-tl-none inline-block max-w-[85%]">
-                    Hi! I'm your Box Office Buddy. Need help planning? Or... do you want to see the strategy?
+                    Hi! I'm your Box Office Buddy.
                 </div>
             </div>
             <div class="p-2 bg-gray-100 grid grid-cols-2 gap-2">
